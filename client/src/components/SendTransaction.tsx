@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 
+import { fromWeiToEth } from "../lib/tools/conversion";
 import { Actions } from "../types";
 
 interface SendTransactionProps {
@@ -123,7 +124,9 @@ const SendTransaction: React.FC = () => {
                   id="input-amount"
                   className="opacity-70 py-3 px-4 block bg-gray-50 border-gray-800 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 w-full"
                   placeholder="Amount"
-                  {...register("value")}
+                  {...register("value", {
+                    setValueAs: (value) => fromWeiToEth(value),
+                  })}
                 />
               </div>
               <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t">
