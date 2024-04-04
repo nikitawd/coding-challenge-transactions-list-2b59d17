@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import { Actions } from "../types";
 

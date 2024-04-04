@@ -1,16 +1,16 @@
-import { takeEvery } from "redux-saga/effects";
 import {
-  JsonRpcProvider,
-  Transaction,
-  TransactionResponse,
-  TransactionReceipt,
   BrowserProvider,
+  JsonRpcProvider,
   Signer,
+  Transaction,
+  TransactionReceipt,
+  TransactionResponse,
 } from "ethers";
+import { takeEvery } from "redux-saga/effects";
 
 import apolloClient from "../apollo/client";
-import { Actions } from "../types";
 import { SaveTransaction } from "../queries";
+import { Actions } from "../types";
 
 function* sendTransaction() {
   const provider = new JsonRpcProvider("http://localhost:8545");
@@ -28,14 +28,22 @@ function* sendTransaction() {
     return accounts[random].address;
   };
 
+  const randomValue = () => {
+    const min = 1;
+    const max = 100;
+    return Math.round(Math.random() * (max - min) + min);
+  };
+
   const transaction = {
     to: randomAddress(),
-    value: 1000000000000000000,
+    value: randomValue(),
   };
 
   try {
-    const txResponse: TransactionResponse =
-      yield signer.sendTransaction(transaction);
+    const txResponse: TransactionResponse = yield signer.sendTransaction(
+      transaction
+    );
+
     const response: TransactionReceipt = yield txResponse.wait();
 
     const receipt: Transaction = yield response.getTransaction();
@@ -58,7 +66,7 @@ function* sendTransaction() {
       variables,
     });
   } catch (error) {
-    //
+    console.log(error);
   }
 }
 
