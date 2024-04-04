@@ -10,6 +10,7 @@ export const typeDefs = gql`
     data: String
     chainId: String!
     hash: String!
+    receipt: String!
   }
 
   type Query {
