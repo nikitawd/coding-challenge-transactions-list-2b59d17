@@ -43,7 +43,7 @@ const Navigation: React.FC = () => {
             Transactions List
           </a>
         </div>
-        <div className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
+        <div className="hs-collapse overflow-hidden transition-all duration-300 basis-full grow block">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5">
             {wallet && (
               <>
@@ -53,11 +53,12 @@ const Navigation: React.FC = () => {
                 </p>
               </>
             )}
+
             {!wallet && (
               <button
                 type="button"
                 onClick={handleConnect}
-                className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-gray-200 hover:text-white hover:bg-gray-500 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 transition-all text-sm"
+                className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-gray-200 hover:text-white hover:bg-gray-500 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 transition-all text-sm mt-4 sm:mt-0"
               >
                 Connect Wallet
               </button>
