@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from "react";
 import Onboard, { WalletState } from "@web3-onboard/core";
+import metamaskModule from "@web3-onboard/metamask";
+import React, { useCallback, useState } from "react";
 
 import SendTransaction from "./SendTransaction";
 
 const onboard = Onboard({
-  wallets: [],
+  wallets: [metamaskModule({ options: {} })],
   chains: [
     {
-      id: "123456",
+      id: "0x539",
       token: "ETH",
       label: "Local Ganache",
       rpcUrl: "http://localhost:8545",
