@@ -32,3 +32,9 @@ export enum Actions {
   SendTransaction = "SEND_TRANSACTION",
 }
 
+export interface SendTransactionProps {
+  to: string;
+  value: number;
+}
+
+export type SendTransactionAction = Action<SendTransactionProps>;

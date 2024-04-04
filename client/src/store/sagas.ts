@@ -11,9 +11,9 @@ import { takeEvery } from "redux-saga/effects";
 import apolloClient from "../apollo/client";
 import { navigate } from "../components/NaiveRouter";
 import { SaveTransaction } from "../queries";
-import { Actions } from "../types";
+import { Actions, SendTransactionAction } from "../types";
 
-function* sendTransaction() {
+function* sendTransaction({ payload }: SendTransactionAction) {
   const provider = new JsonRpcProvider("http://localhost:8545");
 
   const walletProvider = new BrowserProvider(window.web3.currentProvider);
@@ -36,8 +36,8 @@ function* sendTransaction() {
   };
 
   const transaction = {
-    to: randomAddress(),
-    value: randomValue(),
+    to: payload.to || randomAddress(),
+    value: payload.value || randomValue(),
   };
 
   try {
