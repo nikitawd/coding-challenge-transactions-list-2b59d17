@@ -9,6 +9,7 @@ import {
 import { takeEvery } from "redux-saga/effects";
 
 import apolloClient from "../apollo/client";
+import { navigate } from "../components/NaiveRouter";
 import { SaveTransaction } from "../queries";
 import { Actions } from "../types";
 
@@ -65,6 +66,8 @@ function* sendTransaction() {
       mutation: SaveTransaction,
       variables,
     });
+
+    navigate(`/transaction/${receipt.hash}`);
   } catch (error) {
     console.log(error);
   }
